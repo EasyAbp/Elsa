@@ -1,6 +1,6 @@
-# Abp.WorkflowCore
+# ElsaWorkflows
 
-[![NuGet](https://img.shields.io/nuget/v/EasyAbp.Abp.WorkflowCore.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.Abp.WorkflowCore)
-[![NuGet Download](https://img.shields.io/nuget/dt/EasyAbp.Abp.WorkflowCore.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.Abp.WorkflowCore)
+[![NuGet](https://img.shields.io/nuget/v/EasyAbp.ElsaWorkflows.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.ElsaWorkflows)
+[![NuGet Download](https://img.shields.io/nuget/dt/EasyAbp.ElsaWorkflows.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.ElsaWorkflows)
 
-Abp Workflow Core module.
+Abp Elsa Workflows module, not only integrating Elsa Core library but also providing preset Elsa activities for the ABP framework.
