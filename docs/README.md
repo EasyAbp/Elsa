@@ -36,7 +36,7 @@ An Abp module integrates [Elsa workflows](https://github.com/elsa-workflows/elsa
     });
     ```
 
-1. Configure the Web host project.
+2. Configure the Web host project.
     ```c#
     Configure<AbpElsaWebOptions>(options =>
     {
@@ -44,6 +44,11 @@ An Abp module integrates [Elsa workflows](https://github.com/elsa-workflows/elsa
         options.ServerUrl = "https://myapp.com";
     });
     ```
+
+3. Grant the `EasyAbp.Elsa.ElsaManagement` permission to admin users.
+
+> Please notice this module has implemented Elsa's multi-tenant support.
+> That means tenant admins can create their workflows with tenant-isolated.
 
 ## Road map
 
