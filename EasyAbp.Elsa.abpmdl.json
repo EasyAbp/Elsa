@@ -1,0 +1,111 @@
+{
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {},
+      "host": {}
+    }
+  },
+  "packages": {
+    "EasyAbp.Elsa.Domain.Shared": {
+      "path": "src/EasyAbp.Elsa.Domain.Shared/EasyAbp.Elsa.Domain.Shared.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.Elsa.Domain": {
+      "path": "src/EasyAbp.Elsa.Domain/EasyAbp.Elsa.Domain.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.Elsa.Application.Contracts": {
+      "path": "src/EasyAbp.Elsa.Application.Contracts/EasyAbp.Elsa.Application.Contracts.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.Elsa.Application": {
+      "path": "src/EasyAbp.Elsa.Application/EasyAbp.Elsa.Application.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.Elsa.EntityFrameworkCore": {
+      "path": "src/EasyAbp.Elsa.EntityFrameworkCore/EasyAbp.Elsa.EntityFrameworkCore.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.Elsa.MongoDB": {
+      "path": "src/EasyAbp.Elsa.MongoDB/EasyAbp.Elsa.MongoDB.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.Elsa.HttpApi": {
+      "path": "src/EasyAbp.Elsa.HttpApi/EasyAbp.Elsa.HttpApi.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.Elsa.HttpApi.Client": {
+      "path": "src/EasyAbp.Elsa.HttpApi.Client/EasyAbp.Elsa.HttpApi.Client.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.Elsa.TestBase": {
+      "path": "test/EasyAbp.Elsa.TestBase/EasyAbp.Elsa.TestBase.abppkg.json",
+      "folder": "test"
+    },
+    "EasyAbp.Elsa.EntityFrameworkCore.Tests": {
+      "path": "test/EasyAbp.Elsa.EntityFrameworkCore.Tests/EasyAbp.Elsa.EntityFrameworkCore.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "EasyAbp.Elsa.MongoDB.Tests": {
+      "path": "test/EasyAbp.Elsa.MongoDB.Tests/EasyAbp.Elsa.MongoDB.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "EasyAbp.Elsa.Domain.Tests": {
+      "path": "test/EasyAbp.Elsa.Domain.Tests/EasyAbp.Elsa.Domain.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "EasyAbp.Elsa.Application.Tests": {
+      "path": "test/EasyAbp.Elsa.Application.Tests/EasyAbp.Elsa.Application.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "EasyAbp.Elsa.HttpApi.Host": {
+      "path": "host/EasyAbp.Elsa.HttpApi.Host/EasyAbp.Elsa.HttpApi.Host.abppkg.json",
+      "folder": "host"
+    },
+    "EasyAbp.Elsa.Web": {
+      "path": "src/EasyAbp.Elsa.Web/EasyAbp.Elsa.Web.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.Elsa.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/EasyAbp.Elsa.HttpApi.Client.ConsoleTestApp/EasyAbp.Elsa.HttpApi.Client.ConsoleTestApp.abppkg.json",
+      "folder": "test"
+    },
+    "EasyAbp.Elsa.Web.Host": {
+      "path": "host/EasyAbp.Elsa.Web.Host/EasyAbp.Elsa.Web.Host.abppkg.json",
+      "folder": "host"
+    },
+    "EasyAbp.Elsa.IdentityServer": {
+      "path": "host/EasyAbp.Elsa.IdentityServer/EasyAbp.Elsa.IdentityServer.abppkg.json",
+      "folder": "host"
+    },
+    "EasyAbp.Elsa.Host.Shared": {
+      "path": "host/EasyAbp.Elsa.Host.Shared/EasyAbp.Elsa.Host.Shared.abppkg.json",
+      "folder": "host"
+    },
+    "EasyAbp.Elsa.Web.Unified": {
+      "path": "host/EasyAbp.Elsa.Web.Unified/EasyAbp.Elsa.Web.Unified.abppkg.json",
+      "folder": "host"
+    },
+    "EasyAbp.Elsa.Blazor": {
+      "path": "src/EasyAbp.Elsa.Blazor/EasyAbp.Elsa.Blazor.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.Elsa.Blazor.Host": {
+      "path": "host/EasyAbp.Elsa.Blazor.Host/EasyAbp.Elsa.Blazor.Host.abppkg.json",
+      "folder": "host"
+    },
+    "EasyAbp.Elsa.Blazor.Server": {
+      "path": "src/EasyAbp.Elsa.Blazor.Server/EasyAbp.Elsa.Blazor.Server.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.Elsa.Blazor.WebAssembly": {
+      "path": "src/EasyAbp.Elsa.Blazor.WebAssembly/EasyAbp.Elsa.Blazor.WebAssembly.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.Elsa.Blazor.Server.Host": {
+      "path": "host/EasyAbp.Elsa.Blazor.Server.Host/EasyAbp.Elsa.Blazor.Server.Host.abppkg.json",
+      "folder": "host"
+    }
+  }
+}

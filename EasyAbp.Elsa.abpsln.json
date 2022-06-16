@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "EasyAbp.Elsa": {
+      "path": "EasyAbp.Elsa.abpmdl.json"
+    }
+  }
+}

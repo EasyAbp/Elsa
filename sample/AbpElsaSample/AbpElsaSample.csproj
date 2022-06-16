@@ -1,0 +1,114 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Elsa.Activities.Http" Version="$(ElsaVersion)" />
+    <PackageReference Include="Elsa.Persistence.EntityFramework.SqlServer" Version="$(ElsaVersion)" />
+    <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+    <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Swashbuckle" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore.SqlServer" Version="$(AbpVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Account.Application" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Account.HttpApi" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="$(AbpVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.Identity" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Identity.Application" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Identity.HttpApi" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.IdentityServer.EntityFrameworkCore" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Identity.Web" Version="$(AbpVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.IdentityServer" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="$(AbpVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.TenantManagement.EntityFrameworkCore" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.TenantManagement.HttpApi" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Web" Version="$(AbpVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Featuremanagement.Application" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Featuremanagement.EntityFrameworkCore" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Featuremanagement.HttpApi" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Featuremanagement.Web" Version="$(AbpVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.SettingManagement.Application" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.SettingManagement.EntityFrameworkCore" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.SettingManagement.HttpApi" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Web" Version="$(AbpVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AuditLogging.EntityFrameworkCore" Version="$(AbpVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite" Version="1.0.0-beta.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.*">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>compile; contentFiles; build; buildMultitargeting; buildTransitive; analyzers; native</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Localization\AbpElsaSample\*.json" />
+    <EmbeddedResource Include="Localization\AbpElsaSample\*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Logs\**" />
+    <Content Remove="Logs\**" />
+    <EmbeddedResource Remove="Logs\**" />
+    <None Remove="Logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Pages\**\*.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Pages\**\*.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\EasyAbp.Elsa.Server.Api\EasyAbp.Elsa.Server.Api.csproj" />
+    <ProjectReference Include="..\..\src\EasyAbp.Elsa.Web\EasyAbp.Elsa.Web.csproj" />
+  </ItemGroup>
+
+</Project>
