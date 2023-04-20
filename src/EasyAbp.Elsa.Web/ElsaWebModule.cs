@@ -39,5 +39,6 @@ public class ElsaWebModule : AbpModule
         {
             //Configure authorization.
         });
+        
     }
 }

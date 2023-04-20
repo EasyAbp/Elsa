@@ -2,7 +2,7 @@
   <PropertyGroup>
 
     <AbpVersion>7.1.0</AbpVersion>
-    <ElsaVersion>2.11.0</ElsaVersion>
+    <ElsaVersion>2.11.1</ElsaVersion>
 
   </PropertyGroup>
 </Project>
