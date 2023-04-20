@@ -6,8 +6,16 @@ using AbpElsaSample.Menus;
 using EasyAbp.Elsa;
 using EasyAbp.Elsa.Web;
 using EasyAbp.Elsa.Web.Options;
+using Elsa.Models;
 using Elsa.Persistence.EntityFramework.Core.Extensions;
 using Elsa.Persistence.EntityFramework.SqlServer;
+using Elsa.Server.Api;
+using Elsa.Server.Api.Extensions.SchemaFilters;
+using Elsa.Server.Api.Mapping;
+using Elsa.Server.Api.Swagger.Examples;
+using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.OpenApi.Any;
+using Swashbuckle.AspNetCore.Filters;
 using Volo.Abp;
 using Volo.Abp.Account;
 using Volo.Abp.Account.Web;
@@ -159,6 +167,32 @@ public class AbpElsaSampleModule : AbpModule
             options.AddAbpActivities();
         });
 
+        context.Services.AddSwaggerGen(
+            options =>
+            {
+                options.SwaggerDoc("elsa-v1", new OpenApiInfo { Title = "Elsa API", Version = "elsa-v1" });
+                options.EnableAnnotations();
+                options.MapType<VersionOptions?>(() => new OpenApiSchema
+                {
+                    Type = PrimitiveType.String.ToString().ToLower(),
+                    Example = new OpenApiString("Latest"),
+                    Description = "Any of Latest, Published, Draft, LatestOrPublished or a specific version number.",
+                    Nullable = true,
+                    Default = new OpenApiString("Latest")
+                });
+
+                options.MapType<Type>(() => new OpenApiSchema
+                {
+                    Type = PrimitiveType.String.ToString().ToLower(),
+                    Example = new OpenApiString("System.String, mscorlib")
+                });
+
+                //Allow enums to be displayed
+                options.SchemaFilter<XEnumNamesSchemaFilter>();
+            });
+
+        context.Services.Configure<ApiVersioningOptions>(options => { options.UseApiBehavior = false; });
+
         Configure<AbpElsaWebOptions>(options =>
         {
             options.ServerUrl = null; // It will fall back to the current root-url if null.
@@ -261,7 +295,9 @@ public class AbpElsaSampleModule : AbpModule
             options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "AbpElsaSample API", Version = "v1" });
-                options.DocInclusionPredicate((docName, description) => true);
+                options.DocInclusionPredicate((_, description) =>
+                    description.ActionDescriptor.DisplayName != null &&
+                    !description.ActionDescriptor.DisplayName.StartsWith("Elsa."));
                 options.CustomSchemaIds(type => type.FullName);
             }
         );
@@ -277,6 +313,7 @@ public class AbpElsaSampleModule : AbpModule
              * https://docs.automapper.org/en/stable/Configuration-validation.html
              */
             options.AddMaps<AbpElsaSampleModule>( /* validate: true */);
+            options.AddMaps<AutoMapperProfile>( /* validate: true */);
         });
     }
 
@@ -330,7 +367,11 @@ public class AbpElsaSampleModule : AbpModule
         app.UseAuthorization();
 
         app.UseSwagger();
-        app.UseAbpSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "AbpElsaSample API"); });
+        app.UseAbpSwaggerUI(options =>
+        {
+            options.SwaggerEndpoint("/swagger/v1/swagger.json", "AbpElsaSample API");
+            options.SwaggerEndpoint("/swagger/elsa-v1/swagger.json", "Elsa API");
+        });
 
         app.UseAuditing();
         app.UseAbpSerilogEnrichers();
