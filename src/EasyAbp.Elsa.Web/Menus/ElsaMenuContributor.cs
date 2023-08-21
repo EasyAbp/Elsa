@@ -21,7 +21,8 @@ public class ElsaMenuContributor : IMenuContributor
             
         if (await context.IsGrantedAsync(ElsaPermissions.ElsaManagement.Default))
         {
-            context.Menu.AddItem(new ApplicationMenuItem(ElsaMenus.Name, displayName: l["Menu:Elsa"], "~/Elsa", icon: "fa fa-code"));
+            context.Menu.GetAdministration().AddItem(new ApplicationMenuItem(ElsaMenus.Name,
+                displayName: l["Menu:Elsa"], "~/Elsa", icon: "fa fa-code"));
         }
     }
 }
