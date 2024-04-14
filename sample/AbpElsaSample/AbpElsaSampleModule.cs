@@ -9,13 +9,10 @@ using EasyAbp.Elsa.Web.Options;
 using Elsa.Models;
 using Elsa.Persistence.EntityFramework.Core.Extensions;
 using Elsa.Persistence.EntityFramework.SqlServer;
-using Elsa.Server.Api;
 using Elsa.Server.Api.Extensions.SchemaFilters;
 using Elsa.Server.Api.Mapping;
-using Elsa.Server.Api.Swagger.Examples;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.OpenApi.Any;
-using Swashbuckle.AspNetCore.Filters;
 using Volo.Abp;
 using Volo.Abp.Account;
 using Volo.Abp.Account.Web;
@@ -283,7 +280,7 @@ public class AbpElsaSampleModule : AbpModule
 
     private void ConfigureAutoApiControllers()
     {
-        Configure<AbpAspNetCoreMvcOptions>(options =>
+        PreConfigure<AbpAspNetCoreMvcOptions>(options =>
         {
             options.ConventionalControllers.Create(typeof(AbpElsaSampleModule).Assembly);
         });
