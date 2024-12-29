@@ -349,7 +349,7 @@ public class AbpElsaSampleModule : AbpModule
         }
 
         app.UseCorrelationId();
-        app.UseStaticFiles();
+        app.MapAbpStaticAssets();
         app.UseRouting();
         app.UseAuthentication();
         app.UseJwtTokenMiddleware();
