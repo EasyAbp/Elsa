@@ -11,7 +11,7 @@ using Elsa.Persistence.EntityFramework.Core.Extensions;
 using Elsa.Persistence.EntityFramework.SqlServer;
 using Elsa.Server.Api.Extensions.SchemaFilters;
 using Elsa.Server.Api.Mapping;
-using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Any;
 using Volo.Abp;
 using Volo.Abp.Account;
@@ -164,31 +164,30 @@ public class AbpElsaSampleModule : AbpModule
             options.AddAbpActivities();
         });
 
-        context.Services.AddSwaggerGen(
-            options =>
+        context.Services.AddSwaggerGen(options =>
+        {
+            options.SwaggerDoc("elsa-v1", new OpenApiInfo { Title = "Elsa API", Version = "elsa-v1" });
+            options.EnableAnnotations();
+            options.MapType<VersionOptions?>(() => new OpenApiSchema
             {
-                options.SwaggerDoc("elsa-v1", new OpenApiInfo { Title = "Elsa API", Version = "elsa-v1" });
-                options.EnableAnnotations();
-                options.MapType<VersionOptions?>(() => new OpenApiSchema
-                {
-                    Type = PrimitiveType.String.ToString().ToLower(),
-                    Example = new OpenApiString("Latest"),
-                    Description = "Any of Latest, Published, Draft, LatestOrPublished or a specific version number.",
-                    Nullable = true,
-                    Default = new OpenApiString("Latest")
-                });
-
-                options.MapType<Type>(() => new OpenApiSchema
-                {
-                    Type = PrimitiveType.String.ToString().ToLower(),
-                    Example = new OpenApiString("System.String, mscorlib")
-                });
-
-                //Allow enums to be displayed
-                options.SchemaFilter<XEnumNamesSchemaFilter>();
+                Type = PrimitiveType.String.ToString().ToLower(),
+                Example = new OpenApiString("Latest"),
+                Description = "Any of Latest, Published, Draft, LatestOrPublished or a specific version number.",
+                Nullable = true,
+                Default = new OpenApiString("Latest")
             });
 
-        context.Services.Configure<ApiVersioningOptions>(options => { options.UseApiBehavior = false; });
+            options.MapType<Type>(() => new OpenApiSchema
+            {
+                Type = PrimitiveType.String.ToString().ToLower(),
+                Example = new OpenApiString("System.String, mscorlib")
+            });
+
+            //Allow enums to be displayed
+            options.SchemaFilter<XEnumNamesSchemaFilter>();
+        });
+
+        context.Services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
 
         Configure<AbpElsaWebOptions>(options =>
         {
@@ -288,8 +287,7 @@ public class AbpElsaSampleModule : AbpModule
 
     private void ConfigureSwagger(IServiceCollection services)
     {
-        services.AddAbpSwaggerGen(
-            options =>
+        services.AddAbpSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "AbpElsaSample API", Version = "v1" });
                 options.DocInclusionPredicate((_, description) =>
