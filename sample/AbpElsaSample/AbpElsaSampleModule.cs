@@ -1,5 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.OpenApi.Models;
+﻿using System.Text.Json.Nodes;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.OpenApi;
 using AbpElsaSample.Data;
 using AbpElsaSample.Localization;
 using AbpElsaSample.Menus;
@@ -9,10 +10,8 @@ using EasyAbp.Elsa.Web.Options;
 using Elsa.Models;
 using Elsa.Persistence.EntityFramework.Core.Extensions;
 using Elsa.Persistence.EntityFramework.SqlServer;
-using Elsa.Server.Api.Extensions.SchemaFilters;
 using Elsa.Server.Api.Mapping;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Any;
 using Volo.Abp;
 using Volo.Abp.Account;
 using Volo.Abp.Account.Web;
@@ -170,21 +169,19 @@ public class AbpElsaSampleModule : AbpModule
             options.EnableAnnotations();
             options.MapType<VersionOptions?>(() => new OpenApiSchema
             {
-                Type = PrimitiveType.String.ToString().ToLower(),
-                Example = new OpenApiString("Latest"),
+                Type = JsonSchemaType.String | JsonSchemaType.Null,
+                Example = JsonValue.Create("Latest"),
                 Description = "Any of Latest, Published, Draft, LatestOrPublished or a specific version number.",
-                Nullable = true,
-                Default = new OpenApiString("Latest")
+                Default = JsonValue.Create("Latest")
             });
 
             options.MapType<Type>(() => new OpenApiSchema
             {
-                Type = PrimitiveType.String.ToString().ToLower(),
-                Example = new OpenApiString("System.String, mscorlib")
+                Type = JsonSchemaType.String,
+                Example = JsonValue.Create("System.String, mscorlib")
             });
 
-            //Allow enums to be displayed
-            options.SchemaFilter<XEnumNamesSchemaFilter>();
+
         });
 
         context.Services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });

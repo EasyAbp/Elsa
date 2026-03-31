@@ -2,7 +2,9 @@
 using Localization.Resources.AbpUi;
 using EasyAbp.Elsa.Localization;
 using Elsa.Server.Api;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
@@ -21,6 +23,19 @@ public class ElsaServerApiModule : AbpModule
         PreConfigure<IMvcBuilder>(mvcBuilder =>
         {
             mvcBuilder.AddApplicationPartIfNotExists(typeof(ElsaServerApiModule).Assembly);
+
+            // Replace all AssemblyParts with SafeAssemblyParts that handle
+            // ReflectionTypeLoadException (caused by Elsa 2.x's transitive dependencies
+            // on older Swashbuckle versions incompatible with Swashbuckle 10.x).
+            mvcBuilder.ConfigureApplicationPartManager(manager =>
+            {
+                var assemblyParts = manager.ApplicationParts.OfType<AssemblyPart>().ToList();
+                foreach (var part in assemblyParts)
+                {
+                    manager.ApplicationParts.Remove(part);
+                    manager.ApplicationParts.Add(new SafeAssemblyPart(part.Assembly));
+                }
+            });
         });
     }
 
