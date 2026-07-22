@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Nodes;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi;
 using AbpElsaSample.Data;
@@ -25,7 +26,6 @@ using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.Autofac;
-using Volo.Abp.AutoMapper;
 using Volo.Abp.Emailing;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.SqlServer;
@@ -37,6 +37,7 @@ using Volo.Abp.Identity.Web;
 using Volo.Abp.IdentityServer.EntityFrameworkCore;
 using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
+using Volo.Abp.Mapperly;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.PermissionManagement;
@@ -62,7 +63,7 @@ namespace AbpElsaSample;
     // ABP Framework packages
     typeof(AbpAspNetCoreMvcModule),
     typeof(AbpAutofacModule),
-    typeof(AbpAutoMapperModule),
+    typeof(AbpMapperlyModule),
     typeof(AbpEntityFrameworkCoreSqlServerModule),
     typeof(AbpSwashbuckleModule),
     typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
@@ -141,7 +142,7 @@ public class AbpElsaSampleModule : AbpModule
         ConfigureMultiTenancy();
         ConfigureUrls(configuration);
         ConfigureBundles();
-        ConfigureAutoMapper(context);
+        ConfigureObjectMapper(context);
         ConfigureSwagger(context.Services);
         ConfigureNavigationServices();
         ConfigureAutoApiControllers();
@@ -295,18 +296,9 @@ public class AbpElsaSampleModule : AbpModule
         );
     }
 
-    private void ConfigureAutoMapper(ServiceConfigurationContext context)
+    private void ConfigureObjectMapper(ServiceConfigurationContext context)
     {
-        context.Services.AddAutoMapperObjectMapper<AbpElsaSampleModule>();
-        Configure<AbpAutoMapperOptions>(options =>
-        {
-            /* Uncomment `validate: true` if you want to enable the Configuration Validation feature.
-             * See AutoMapper's documentation to learn what it is:
-             * https://docs.automapper.org/en/stable/Configuration-validation.html
-             */
-            options.AddMaps<AbpElsaSampleModule>( /* validate: true */);
-            options.AddMaps<AutoMapperProfile>( /* validate: true */);
-        });
+        context.Services.AddMapperlyObjectMapper<AbpElsaSampleModule>();
     }
 
     private void ConfigureEfCore(ServiceConfigurationContext context)
